@@ -1,0 +1,20 @@
+fail_fast: true
+
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.14
+    hooks:
+      - id: ruff
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        args: [--strict, "h5py-stubs"]
+        language_version: python3.10
+        pass_filenames: false
+        additional_dependencies: [
+          "numpy",
+        ]
+  
