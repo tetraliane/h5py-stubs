@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "h5py_stubs"
-version = "0.1.0"
+version = "0.1.1"
 description = "Type stubs for H5py"
 authors = ["Matteo Bouvier <m.bouvier@vidium-solutions.com>"]
 license = "MIT"
