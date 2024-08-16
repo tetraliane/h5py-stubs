@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Any, Collection, Iterator, Literal
+from collections.abc import Callable, Collection, Iterator
+from typing import Any, Literal, TypeVar
 
 import numpy.typing as npt
 
@@ -9,6 +10,8 @@ from .attrs import AttributeManager
 from .base import HLObject, MutableMappingHDF5
 from .dataset import Dataset
 from .datatype import Datatype
+
+T = TypeVar("T")
 
 class Group(HLObject, MutableMappingHDF5[str, "Group" | Dataset | Datatype]):
     def __init__(self, bind: GroupID): ...
@@ -38,3 +41,5 @@ class Group(HLObject, MutableMappingHDF5[str, "Group" | Dataset | Datatype]):
     def mode(self) -> Literal["r", "r+"]: ...
     @property
     def parent(self) -> Group: ...
+    def visit(self, callback: Callable[[str], T]) -> T: ...
+    def visititems(self, callback: Callable[[str, Group | Dataset], T]) -> T: ...
